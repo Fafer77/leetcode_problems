@@ -13,15 +13,12 @@ class Solution:
         slow_ptr = head
         fast_ptr = head
 
-        while fast_ptr != None and slow_ptr != fast_ptr:
+        while fast_ptr and fast_ptr.next:
             slow_ptr = slow_ptr.next
             fast_ptr = fast_ptr.next.next
 
-        if fast_ptr == None:
-            return False
-        else:
-            return True
+            if slow_ptr == fast_ptr:
+                return True
         
+        return False
 
-sol = Solution()
-print(sol.hasCycle([1,2]))
