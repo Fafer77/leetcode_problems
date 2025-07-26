@@ -8,10 +8,15 @@ class TreeNode:
 
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root is None:
+            return None
+        
         def dfs(v):
             v.left, v.right = v.right, v.left
-            dfs(v.left)
-            dfs(v.right)
+            if v.left:
+                dfs(v.left)
+            if v.right:
+                dfs(v.right)
             return
         
         dfs(root)
