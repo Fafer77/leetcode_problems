@@ -21,7 +21,6 @@ class PrefixTree:
         
         curr_node.is_end_of_word = True
 
-
     def search(self, word: str) -> bool:
         curr_node = self.root
         for letter in word:
