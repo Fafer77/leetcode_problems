@@ -27,14 +27,14 @@ class Solution:
         for i in range(m):
             queue_pacific.append([0, i])
             queue_atlantic.append([n - 1, i])
-            pacific.add([0, i])
-            atlantic.add([n - 1, i])
+            pacific.add((0, i))
+            atlantic.add((n - 1, i))
 
         for i in range(n):
             queue_pacific.append([i, 0])
             queue_atlantic.append([i, m - 1])
-            pacific.add([i, 0])
-            atlantic.add([i, m - 1])
+            pacific.add((i, 0))
+            atlantic.add((i, m - 1))
 
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
@@ -42,17 +42,19 @@ class Solution:
             r, c = queue_pacific.popleft()
             for dr, dc in directions:
                 nr, nc = r + dr, c + dc
-                if 0 <= nr < n and 0 <= nc < m and ([nr, nc] not in pacific) \
+                if 0 <= nr < n and 0 <= nc < m and ((nr, nc) not in pacific) \
                         and heights[nr][nc] >= heights[r][c]:
                     queue_pacific.append([nr, nc])
-                    pacific.add([nr, nc])
+                    pacific.add((nr, nc))
         
         while queue_atlantic:
             r, c = queue_atlantic.popleft()
             for dr, dc in directions:
                 nr, nc = r + dr, c + dc
-                if 0 <= nr < n and 0 <= nc < m and ([nr, nc] not in atlantic) \
+                if 0 <= nr < n and 0 <= nc < m and ((nr, nc) not in atlantic) \
                         and heights[nr][nc] >= heights[r][c]:
                     queue_atlantic.append([nr, nc])
-                    atlantic.add([nr, nc])
+                    atlantic.add((nr, nc))
 
+        res = atlantic & pacific
+        return [[r, c] for r, c in res]
