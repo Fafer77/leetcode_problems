@@ -43,5 +43,11 @@ class Solution:
             level_size = len(queue)
             minutes += 1
         
-        return minutes if fruits_left == 0 else -1
+        if fruits_left == 0:
+            if minutes == 0:
+                return 0
+            else:
+                return minutes - 1
+        else:
+            return -1
 
