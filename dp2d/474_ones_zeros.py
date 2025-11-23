@@ -1,3 +1,9 @@
+"""
+Idea: We will use dp -> we choose whether it is worth adding string or not if we can add it.
+For each string we iterate through matrix. We do it from last cell so that we don't count the same
+string several times.
+"""
+
 from typing import List
 
 class Solution:
